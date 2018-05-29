@@ -38,6 +38,26 @@ function createApi(api, opts = {}) {
     },
 
     /**
+     * get a pull request
+     *
+     * @param {String} repo owner
+     * @param {String} slug (name) of the repo
+     * @param {String} PR id
+     *
+     * See: https://developer.atlassian.com/bitbucket/api/2/reference/resource/
+     * repositories/%7Busername%7D/%7Brepo_slug%7D/pullrequests
+     */
+    get(username, repoSlug, pr_id, callback) {
+      validateArgs('get', arguments, 3)
+      const uri = buildUri(username, repoSlug, 'pullrequests', pr_id)
+      api.get(
+        uri,
+        null, null,
+        result.$createListener(callback)
+      )
+    },
+
+    /**
      * create new pull requests
      *
      * @param {String} repo owner
@@ -289,6 +309,26 @@ function createApi(api, opts = {}) {
         uri, null, null,
         result.$createListener(callback)
       )
+    },
+
+     /**
+     * Modify a PR
+     *
+     * @param {String} repo owner
+     * @param {String} slug (name) of the repo
+     * @param {String} PR id
+     * @param {Object} PR edit object
+     *
+     * See: https://developer.atlassian.com/bitbucket/api/2/reference/resource/
+     * repositories/%7Busername%7D/%7Brepo_slug%7D/pullrequests/%7Bpull_request_id%7D
+     */
+    modify(username, repoSlug, pr_id, data, callback) {
+      validateArgs('modify', arguments, 4)
+      const uri = buildUri(username, repoSlug, 'pullrequests', pr_id)
+      api.put(
+        uri, data, null,
+        result.$createListener(callback)
+      )
     }
   }
 
@@ -302,6 +342,7 @@ module.exports = {
   createApi,
   methods: [
     'getAll',
+    'get',
     'create',
     'allActivity',
     'getActivity',
@@ -314,6 +355,7 @@ module.exports = {
     'getDiff',
     'merge',
     'patch',
-    'statuses'
+    'statuses',
+    'modify'
   ]
 }

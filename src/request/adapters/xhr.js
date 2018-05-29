@@ -247,7 +247,7 @@ module.exports = function XhrAdapter(_options) {
 
       let query
       let path = options.path + '/' + apiPath.replace(/\/*$/, '') // eslint-disable-line prefer-template
-      if (method === 'POST') {
+      if (method === 'POST' || method === "PUT") {
         query = JSON.stringify(parameters)
         headers['Content-Type'] = options.contentType || 'application/json'
         if (!options.use_xhr) {
@@ -360,6 +360,7 @@ module.exports = function XhrAdapter(_options) {
       const request = https.request(httpsOptions, response => {
         response.setEncoding('utf8')
 
+
         const body = []
         response.addListener('data', chunk => {
           body.push(chunk)
@@ -404,7 +405,7 @@ module.exports = function XhrAdapter(_options) {
         done(e)
       })
 
-      if (httpsOptions.method === 'POST') {
+      if (httpsOptions.method === 'POST' || httpsOptions.method === "PUT") {
         request.write(query)
       }
 
