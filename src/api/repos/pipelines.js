@@ -65,7 +65,7 @@ function createApi(api, opts = {}) {
      */
     get(username, repoSlug, pipelineId, callback) {
       validateArgs('get', arguments, 3)
-      const uri = buildUri(username, repoSlug, pipelineId)
+      const uri = buildUri(username, repoSlug, "pipelines", pipelineId)
       api.get(
         uri,
         null, null,
@@ -85,7 +85,7 @@ function createApi(api, opts = {}) {
      */
     stop(username, repoSlug, pipelineId, callback) {
       validateArgs('stop', arguments, 3)
-      const uri = buildUri(username, repoSlug, pipelineId, 'stopPipeline')
+      const uri = buildUri(username, repoSlug, "pipelines", pipelineId, 'stopPipeline')
       api.post(
         uri,
         null, null,
@@ -104,7 +104,7 @@ function createApi(api, opts = {}) {
      */
     getSteps(username, repoSlug, pipelineId, callback) {
       validateArgs('getSteps', arguments, 3)
-      const uri = buildUri(username, repoSlug, pipelineId, 'steps')
+      const uri = buildUri(username, repoSlug, "pipelines", pipelineId, 'steps')
       api.get(
         uri,
         null, null,
@@ -126,7 +126,7 @@ function createApi(api, opts = {}) {
      */
     getStep(username, repoSlug, pipelineId, stepId, callback) {
       validateArgs('getStep', arguments, 5)
-      const uri = buildUri(username, repoSlug, pipelineId, 'steps', stepId)
+      const uri = buildUri(username, repoSlug, "pipelines", pipelineId, 'steps', stepId)
       api.get(
         uri,
         null, null,
@@ -147,7 +147,7 @@ function createApi(api, opts = {}) {
      */
     getStepLog(username, repoSlug, pipelineId, stepId, callback) {
       validateArgs('getStepLog', arguments, 4)
-      const uri = buildUri(username, repoSlug, pipelineId, 'steps', stepId, 'log')
+      const uri = buildUri(username, repoSlug, "pipelines", pipelineId, 'steps', stepId, 'log')
       api.get(
         uri,
         null, null,
