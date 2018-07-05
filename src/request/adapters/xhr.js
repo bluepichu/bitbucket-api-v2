@@ -332,7 +332,7 @@ module.exports = function XhrAdapter(_options) {
         Buffer.from(`${_user}:${_pass}`).toString('base64') : null
 
       const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
         Authorization: '<none>'
       }
 
