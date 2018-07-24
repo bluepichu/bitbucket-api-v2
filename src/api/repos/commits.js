@@ -34,6 +34,25 @@ function createApi(api, opts = {}) {
         null, null,
         result.$createListener(callback)
       )
+    },
+
+  /**
+     * get a single repo commit
+     *
+     * @param {String} repo owner
+     * @param {String} slug (name) of the repo
+     * @param {String} node (SHA-1) of the commit
+     *
+     * See: https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D/commit/%7Bnode%7D
+     */
+    getAll(username, repoSlug, node, callback) {
+      validateArgs('getAll', arguments, 3)
+      const uri = buildUri(username, repoSlug, "node", node)
+      api.get(
+        uri,
+        null, null,
+        result.$createListener(callback)
+      )
     }
   }
 
