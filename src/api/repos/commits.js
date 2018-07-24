@@ -47,7 +47,7 @@ function createApi(api, opts = {}) {
      */
     get(username, repoSlug, node, callback) {
       validateArgs('get', arguments, 3)
-      const uri = buildUri(username, repoSlug, "node", node)
+      const uri = buildUri(username, repoSlug, "commit", node)
       api.get(
         uri,
         null, null,
